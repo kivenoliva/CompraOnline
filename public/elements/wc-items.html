@@ -9,13 +9,31 @@
 	    debounce-duration="500">
 	</iron-ajax>
 
+    <style is="custom-style">
+        .film-header  { @apply(--paper-font-headline); }
+        .film-light   { color: var(--paper-grey-600); }
+        .film-reserve { color: var(--google-blue-500); }
+        iron-icon.star {
+            --iron-icon-width: 16px;
+            --iron-icon-height: 16px;
+            color: var(--paper-amber-500);
+        }
+        iron-icon.star:last-of-type { color: var(--paper-grey-500); }
+    </style>
+    
+    
+
     <template is="dom-repeat" items="{{items}}">
-        <div class="container"> 
-            <div class="row">
-                <h1>{{item.nombre}}</h1>
-                
-            </div>  
+        
+        <paper-card image="{{image}}">
+        <div class="card-content">
+
         </div>
+        <div class="card-actions">
+
+        </div>
+        </paper-card>
+
     </template>
 </template>
 
