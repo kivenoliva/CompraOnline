@@ -1,0 +1,50 @@
+<dom-module id="wc-items">
+
+<template>   
+    <iron-ajax
+		auto
+	    url="/api/items/{{idSubcategoria}}"
+	    handle-as="json"
+	    on-response="loadAjax"
+	    debounce-duration="500">
+	</iron-ajax>
+
+    <template is="dom-repeat" items="{{items}}">
+        <div class="container"> 
+            <div class="row">
+                <h1>{{item.nombre}}</h1>
+                
+            </div>  
+        </div>
+    </template>
+</template>
+
+<script>
+    Polymer ({
+        is : 'wc-items',
+
+        properties:{
+            idSubcategoria:{
+                type:String
+            },
+
+            items:{
+                type: Array,
+                value: function () { return []; }
+            
+            }
+
+        },
+
+        loadAjax : function (data) {
+            //console.log("SUBCATEGORIAS", data.detail.response.rows)
+            this.items = data.detail.response.rows;
+        }
+
+    
+        
+        
+    });
+ </script>
+ 
+</dom-module>

@@ -1,0 +1,73 @@
+<dom-module id="wc-menu">
+
+<template>
+
+	<iron-ajax
+	    auto
+	    url="/api/categorias"
+	    handle-as="json"
+	    on-response="loadAjax"
+	    debounce-duration="500">
+	</iron-ajax>
+
+	<style>
+		button{
+			margin-top: 1%;
+		}
+
+	</style>
+       
+    <nav class="navbar navbar-default navbar-fixed-to">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      	<paper-dropdown-menu label="CATEGORIAS">
+				<paper-listbox class="dropdown-content" selected="1">
+					<template is="dom-repeat" items="{{categorias}}">
+				 		<paper-item value="{{item.id}} "on-tap="onTapCategoria">{{item.categoria}}</paper-item>
+					</template>
+				</paper-listbox>
+			</paper-dropdown-menu>
+	    </div>
+	    <div class="container">
+	    	<button type="button" class="btn btn-primary">Login</button>
+	    </div>
+	  </div>
+	</nav>
+	
+</template>
+
+<script>
+    Polymer ({
+        is : 'wc-menu',
+
+        properties:{
+        	categorias:{
+        		type: Array,
+                value: function () { return []; }
+            
+        	},
+        	data:{
+        		type:String,
+        		notify:true
+        	}
+
+        },
+
+        loadAjax : function (data) {
+            //console.log("DATA", data.detail.response);
+            this.categorias = data.detail.response.rows;
+        },
+
+        onTapCategoria: function(e){
+        	   	
+        	this.data = e.target.value;
+        	console.log(this.data)
+   
+        }
+
+
+        
+    });
+ </script>
+ 
+</dom-module>

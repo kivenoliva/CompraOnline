@@ -4,10 +4,12 @@ var router = express.Router();
 
 var categorias = [
 		{
+			"id": "1",
 			"categoria": "Gafas de Sol",
 			"subcategorias": ["RayBan", "Arnette", "Vogue", "Carrera"]
 		},
 		{
+			"id": "2",
 			"categoria": "Coches",
 			"subcategorias": ["Mercedes", "Seat", "Honda", "Renault"]
 		}
@@ -17,12 +19,12 @@ var categorias = [
 
 
 /* GET users listing. */
-router.post('/', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
 	console.log("ME llaman");
 	var arrayRes = [];
 
 	for (i=0; i<categorias.length; i++){
-		if(req.body.categoria == categorias[i].categoria){
+		if(req.params.id == categorias[i].id){
 			arrayRes.push(categorias[i]);
 		}
 
@@ -33,6 +35,13 @@ router.post('/', function(req, res, next) {
 	}else{
 		res.json({result: true, rows: arrayRes});
 	}
+
+});
+
+router.get('/', function(req, res, next) {
+	
+	res.json({result: true, rows: categorias});
+	
 
 });
 

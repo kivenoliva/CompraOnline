@@ -1,0 +1,18 @@
+<link rel="import" href="wc-menu.html">
+<link rel="import" href="wc-body.html">
+
+<dom-module id="wc-window">
+
+<template>   
+    <wc-menu data="{{idCategoria}}"></wc-menu>
+    <wc-body id-categoria="[[idCategoria]]"></wc-body>
+</template>
+
+<script>
+    Polymer ({
+        is : 'wc-window'        
+        
+    });
+ </script>
+ 
+</dom-module>
