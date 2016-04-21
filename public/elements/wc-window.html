@@ -4,13 +4,47 @@
 <dom-module id="wc-window">
 
 <template>   
-    <wc-menu data="{{idCategoria}}"></wc-menu>
-    <wc-body id-categoria="[[idCategoria]]"></wc-body>
+	<style>
+
+		
+	</style>
+
+		<wc-menu data="{{idCategoria}}" producto-seleccionado="[[productoSeleccionado]]"></wc-menu>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<wc-carro producto-Seleccionado="{{productoSeleccionado}}"></wc-carro>
+				</div>
+			</div>
+		</div>
+		
+
+		
+    	<wc-body on-wc-producto-carro="añadirProductoCarro" id-categoria="[[idCategoria]]" 
+    	producto-seleccionado="{{productoSeleccionado}}"></wc-body>
+
+
+    
 </template>
 
 <script>
     Polymer ({
-        is : 'wc-window'        
+        is : 'wc-window' ,
+
+        properties:{
+        	productoSeleccionado:{
+                type: Object,
+                value: function () { return {}; }
+            
+            }
+
+
+        },
+
+        añadirProductoCarro:function(e){
+        	console.log(e.detail);
+        	this.productoSeleccionado = e.detail;
+        }       
         
     });
  </script>

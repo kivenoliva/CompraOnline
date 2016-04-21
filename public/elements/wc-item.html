@@ -1,0 +1,71 @@
+<dom-module id="wc-item">
+
+<template>   
+
+    <style is="custom-style">
+        .paper{
+
+            width: 250px;
+            height: 100%;
+        }
+
+        .rate-image {
+            width: 100%;
+            height: 200px;           
+            background-size: cover;
+          }
+
+    </style>
+    
+    
+
+        
+    <paper-card class="paper">
+
+
+        <div class="card-content">
+            <img class="rate-image" src="{{item.imagen}}">
+            <h3>{{item.nombre}}</h3>
+            <iron-icon icon="editor:attach-money"></iron-icon>{{item.precio}}
+        </div>
+        <div class="card-actions horizontal justified">
+          <paper-icon-button on-tap="onClickAñadirCarro" icon="icons:add-shopping-cart"></paper-icon-button>
+          <paper-icon-button icon="social:share"></paper-icon-button>
+          <paper-icon-button icon="icons:favorite"></paper-icon-button> 
+
+          
+        </div>
+
+    
+    </paper-card>
+
+
+
+</template>
+
+<script>
+    Polymer ({
+        is : 'wc-item',
+
+        properties:{
+          
+
+            item:{
+                type: Object,
+                value: function () { return {}; }
+            
+            }
+
+        },
+        onClickAñadirCarro: function(e){
+
+            this.fire("wc-producto-carro", this.item);
+
+        }        
+        
+    });
+ </script>
+ 
+</dom-module>
+
+

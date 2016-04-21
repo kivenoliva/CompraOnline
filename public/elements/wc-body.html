@@ -10,15 +10,24 @@
 	    debounce-duration="500">
 	</iron-ajax>
 
-	<template is="dom-repeat" items="{{subcategorias}}">
- 		<div class="container">	
- 			<div class="row">
- 				<h1>{{item.subcategoria}}</h1>
- 				<wc-items id-subcategoria="{{item.id}}"></wc-items>
- 			</div>	
-		</div>
-	</template>
+    <style>
+        .container{
+            text-align: center;     
+        }
+    </style>
 
+    <div class="container">
+        <template is="dom-repeat" items="{{subcategorias}}">
+        
+        <h1>{{item.subcategoria}}</h1>
+        <wc-items id-subcategoria="{{item.id}}"></wc-items>
+    
+    </template>
+
+
+    </div>
+
+	
 	
 
 

@@ -1,0 +1,119 @@
+<link rel="import" href="wc-items.html">
+<dom-module id="wc-carro">
+
+<template>   
+
+    <style is="custom-style">
+        .paper{
+            background-color: grey;
+            width: 100%;
+            height: 100%;
+        }
+
+        .rate-image {
+            width: 50%;
+            height: auto;           
+            
+          }
+
+        .contenido{
+            width: 50%;
+            float: left;
+        }
+
+    
+
+        .hiddenMio{
+           
+
+            display: none;
+            
+            
+        }
+
+    </style>
+
+
+
+        <paper-icon-button  on-mouseover="sobre" on-mouseout="fuera" icon="icons:shopping-cart"></paper-icon-button>
+             
+        <div id="contenidoItems" class="hiddenMio">
+            <template is="dom-repeat" items="{{productos}}">
+            <paper-card class="paper">
+                <div class="card-content">
+                    <div class="envuelveTodo">
+                        <img class="rate-image" src="{{item.imagen}}">
+                        <div class="contenido">
+                            <h3>{{item.nombre}}</h3>
+                            <iron-icon icon="editor:attach-money"></iron-icon>{{item.precio}}
+                        </div>
+                    </div>
+                </div>
+            </paper-card>
+            </template>
+        </div>        
+        
+
+
+        
+
+</template>
+
+<script>
+    Polymer ({
+        is : 'wc-carro',
+
+        properties:{
+        	productos:{
+        		type: Array,
+                value: function () { return []; },
+                notify:true         
+        	},
+
+            productoSeleccionado:{
+
+                type: Object,
+                value: function () { return {}; },
+                observer: "añadirCarro"
+            
+            }
+
+            
+
+        },
+
+        ready: function(){
+
+
+        },
+
+        add: function(e){
+
+            this.push("productos", e);
+        },
+
+        añadirCarro: function(e){
+            
+            if (e.id !== undefined){
+                console.log("añado en carro: ", e);
+                this.add(e);
+            }
+            
+        },
+
+        sobre: function(e){
+
+            this.$["contenidoItems"].classList.remove("hiddenMio");
+        },
+
+        fuera: function(e){
+
+            this.$["contenidoItems"].classList.add("hiddenMio");
+        }
+
+
+             
+    });
+ </script>
+ 
+</dom-module>
